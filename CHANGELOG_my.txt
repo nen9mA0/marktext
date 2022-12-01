@@ -1,0 +1,2 @@
+merge https://github.com/mitchcapper/marktext/tree/dont_focus_on_cursor_when_system_key_hit_pr
+merge https://github.com/mitchcapper/marktext/tree/support_nagivating_to_slugs_pr

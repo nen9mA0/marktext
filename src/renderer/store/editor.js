@@ -31,6 +31,8 @@ const mutations = {
   SET_TOC (state, toc) {
     state.listToc = toc
     state.toc = listToTree(toc)
+    // state.toc.length = 0
+    // state.toc.push(...listToTree(toc))
   },
   SET_CURRENT_FILE (state, currentFile) {
     const oldCurrentFile = state.currentFile
@@ -342,6 +344,12 @@ const actions = {
   LISTEN_SCREEN_SHOT ({ commit }) {
     ipcRenderer.on('mt::screenshot-captured', e => {
       bus.$emit('screenshot-captured')
+    })
+  },
+
+  LISTEN_SCROLL_TO_HEADER ({ commit }) {
+    ipcRenderer.on('mt::scroll-to-header-by-name', (e, slug) => {
+      bus.$emit('scroll-to-header-by-name', slug)
     })
   },
 

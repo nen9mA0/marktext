@@ -588,6 +588,7 @@ export default {
       bus.$on('deleteParagraph', this.handleParagraph)
       bus.$on('insertParagraph', this.handleInsertParagraph)
       bus.$on('scroll-to-header', this.scrollToHeader)
+      bus.$on('scroll-to-header-by-name', this.scrollToHeaderByName)
       bus.$on('screenshot-captured', this.handleScreenShot)
       bus.$on('switch-spellchecker-language', this.switchSpellcheckLanguage)
       bus.$on('open-command-spellchecker-switch-language', this.openSpellcheckerLanguageCommand)
@@ -908,6 +909,18 @@ export default {
       return this.scrollToElement(`#${slug}`)
     },
 
+    tocNameToSlugName (slug) {
+      return slug.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-')
+    },
+
+    scrollToHeaderByName (slug) {
+      this.editor.contentState.getTOC().forEach(item => {
+        if (this.tocNameToSlugName(item.content) === this.tocNameToSlugName(slug)) {
+          this.scrollToHeader(item.slug)
+        }
+      })
+    },
+
     scrollToElement (selector) {
       // Scroll to search highlight word
       const { container } = this.editor
@@ -1142,6 +1155,7 @@ export default {
     bus.$off('deleteParagraph', this.handleParagraph)
     bus.$off('insertParagraph', this.handleInsertParagraph)
     bus.$off('scroll-to-header', this.scrollToHeader)
+    bus.$off('scroll-to-header-by-name', this.scrollToHeaderByName)
     bus.$off('screenshot-captured', this.handleScreenShot)
     bus.$off('switch-spellchecker-language', this.switchSpellcheckLanguage)
     bus.$off('open-command-spellchecker-switch-language', this.openSpellcheckerLanguageCommand)

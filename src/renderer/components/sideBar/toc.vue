@@ -7,7 +7,7 @@
     <el-tree
       v-if="toc.length"
       :data="toc"
-      :default-expand-all="true"
+      :default-expand-all="false"
       :props="defaultProps"
       @node-click="handleClick"
       :expand-on-click-node="false"
@@ -46,6 +46,24 @@ export default {
     handleClick ({ slug }) {
       bus.$emit('scroll-to-header', slug)
     }
+    // loadToc (node, resolve) {
+    //   // console.log(node)
+    //   if (node.level === 0) {
+    //     const tags = this.toc.map((tocNode) =>
+    //       ({ children: tocNode.children, label: tocNode.label, leaf: tocNode.children.length === 0 }))
+    //     resolve(tags)
+    //   } else {
+    //     const expandNode = this.toc.find((tocNode) =>
+    //       (node.data.children === tocNode.children) && (node.data.label === tocNode.label))
+    //     if (expandNode === undefined) {
+    //       resolve([])
+    //     } else {
+    //       const tags = expandNode.children.map((tocNode) =>
+    //         ({ children: tocNode.children, label: tocNode.label, leaf: tocNode.children.length === 0 }))
+    //       resolve(tags)
+    //     }
+    //   }
+    // }
   }
 }
 </script>
