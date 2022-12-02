@@ -154,6 +154,10 @@ export const deepClone = obj => {
   return JSON.parse(JSON.stringify(obj))
 }
 
+export const getErrorMessageFromInvokeRequest = error => {
+  return error.message.replace(/Error invoking remote method '[^']+': /, '')
+}
+
 export const isOsx = process.platform === 'darwin'
 export const isWindows = process.platform === 'win32'
 export const isLinux = process.platform === 'linux'

@@ -72,6 +72,7 @@ const state = {
   searchFollowSymlinks: true,
 
   watcherUsePolling: false,
+  watcherDirectoryDepth: 12,
 
   // --------------------------------------------------------------------------
 
